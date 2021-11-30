@@ -28,6 +28,7 @@ function Login() {
       <h3 className="py-10 text-3xl">
         * Please Login using
         <a
+          rel="noreferrer"
           href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
           target="_blank"
           className="text-red-900"
