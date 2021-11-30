@@ -5,9 +5,11 @@ import ContextStoreProvider from "../context/ContextStoreProvider";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  const appId = "MWmpjHe3bYiSJXUetHNZlsVv1BmBgyYNhfF1rTtW";
-  const serverUrl = "https://5cehoeqencqr.usemoralis.com:2053/server";
+  // const appId = "MWmpjHe3bYiSJXUetHNZlsVv1BmBgyYNhfF1rTtW";
+  // const serverUrl = "https://5cehoeqencqr.usemoralis.com:2053/server";
 
+  const appId = process.env.NEXT_PUBLIC_APP_ID
+  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
   return (
     <div>
       <Head>
