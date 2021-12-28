@@ -6,7 +6,6 @@ import { nftaddress, nftmarketaddress } from "../config";
 import NFT from "../artifacts/contracts/NFT.sol/NFT.json";
 import Market from "../artifacts/contracts/NFTMarket.sol/NFTMarket.json";
 import Image from "next/image";
-import { contextStore } from "../context/ContextStoreProvider";
 
 function Home() {
   const [nfts, setNfts] = useState([]);
@@ -17,9 +16,7 @@ function Home() {
   }, []);
 
   async function loadNFTS() {
-    const provider = new ethers.providers.JsonRpcProvider(
-      "https://polygon-mumbai.infura.io/v3/204efb1ccc384775857ef27ec34795e8"
-    );
+    const provider = new ethers.providers.JsonRpcProvider();
     const tokenContracts = new ethers.Contract(nftaddress, NFT.abi, provider);
     const marketContract = new ethers.Contract(
       nftmarketaddress,
@@ -73,19 +70,20 @@ function Home() {
 
   return (
     <div className="flex justify-center">
-      <div className="px-4 py-4" style={{ maxWidth: "1600px" }}>
+      <div className="px-4" style={{ maxWidth: "1600px" }}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {nfts.map((nft, i) => (
             <div key={i} className="border shadow rounded-xl overflow-hidden">
-              <Image src={nft.image} height={200} width={300} />
-              <div className="p-4">
+              <div className="h-40">
+                <img src={nft.image} />
+              </div>
+              <div className="p-4 flex justify-between mt-32">
                 <p
-                  style={{ height: "64px" }}
                   className="text-2xl font-semibold"
                 >
                   {nft.name}
                 </p>
-                <div style={{ height: "50px", overflow: "hidden" }}>
+                <div style={{overflow: "hidden" }}>
                   <p className="text-gray-400">{nft.description}</p>
                 </div>
               </div>
